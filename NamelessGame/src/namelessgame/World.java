@@ -25,7 +25,7 @@ public class World
 		for(int i : ints)
 		{
 			count++;
-			quads[count] = new Quad(x,(float)i/2,z,1,i,1,0,0,0,5,0,5);
+			quads[count] = new Quad(x,(float)i/2,z,1,i,1,0,0,0,(float)Math.random(),(float)Math.random(),(float)Math.random());
 			x++;		
 			if(x >= sizeofrow)
 			{
