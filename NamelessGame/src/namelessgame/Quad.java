@@ -41,8 +41,6 @@ public class Quad
 		linelist = glGenLists(1);
 		glNewList(linelist, GL_COMPILE);
 	    {
-	    	
-	    	
 	    	glColor3f(0,0,0);
 	    		
 	    	glBegin(GL_LINE_STRIP);

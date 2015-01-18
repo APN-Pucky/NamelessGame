@@ -13,7 +13,6 @@ import static org.lwjgl.opengl.GL11.glColorMaterial;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
-import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,18 +23,19 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import de.neuwirthinformatik.Alexander.gl.viewport.PerspectiveViewport;
+
 
 public class Game
 {
 
 	
-	private DisplayMode displaymode = Display.getDesktopDisplayMode();
+	private DisplayMode dm = Display.getDesktopDisplayMode();
 	private long lastFrame;
-	private Quad quad;
-	private Quad quad2;
 	private World world;
 	private Player player;
 	private Random r = new Random();
+	private PerspectiveViewport vp0 = new PerspectiveViewport(0,0,dm.getWidth(),dm.getHeight(),30,0.001f,200);
 
 
 	public void start() 
@@ -71,8 +71,8 @@ public class Game
 		glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         player.changeMatrix();
-        //quad.draw();
-        //quad2.draw();
+        
+        vp0.apply();
         world.draw();
 	}
 
@@ -87,14 +87,11 @@ public class Game
 	private void init()
 	{
 		try {
-            Display.setDisplayMode(displaymode);
-            Display.setTitle("QuadShooter");
+            Display.setDisplayMode(dm);
+            Display.setTitle("Game");
             Display.create();
             Display.setFullscreen(true);
             Mouse.setGrabbed(true);
-            
-          
-            
         } catch (LWJGLException e) {
             e.printStackTrace();
             Display.destroy();
@@ -103,18 +100,21 @@ public class Game
 	 
 		glEnable(GL_COLOR_MATERIAL);
      	glColorMaterial(GL_FRONT, GL_DIFFUSE);
-	 
+      	
 	  	glMatrixMode(GL_PROJECTION);
-      	glLoadIdentity();           
-      	gluPerspective((float) 30, (float)displaymode.getWidth() / (float)displaymode.getHeight(), 0.001f, 200);
-      	//glFrustum(-10,10,-10* displaymode.getWidth() / displaymode.getHeight(),10 * displaymode.getWidth() / displaymode.getHeight(),0.001,200);
+	  	
+      	glLoadIdentity();
+      	vp0.init();
       	glMatrixMode(GL_MODELVIEW);
       	glLoadIdentity();
-      	glEnable(GL_DEPTH_TEST);	
+      	glEnable(GL_DEPTH_TEST);
+      	
+      	
 		lastFrame = getTime();
         getDelta();
-        //quad = new Quad(0,0,-20,1,1,1,0,0,0,0,0,5);
-        //quad2 = new Quad(0,1F,-20,1,1,1,0,0,0,0,5,0);
+        
+        
+        
         ArrayList<Integer> list = new ArrayList<Integer>();
         for(int i = 0; i<10000;i++)
         {
