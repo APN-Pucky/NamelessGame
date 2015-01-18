@@ -116,11 +116,11 @@ public class Game
         //quad = new Quad(0,0,-20,1,1,1,0,0,0,0,0,5);
         //quad2 = new Quad(0,1F,-20,1,1,1,0,0,0,0,5,0);
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for(int i = 0; i<100;i++)
+        for(int i = 0; i<10000;i++)
         {
-        	list.add(r.nextInt(10));
+        	list.add(r.nextInt(3));
         }
-        world = new World(list,3);
+        world = new World(list,100);
         player = new Player(40, 1);
 	}
 	
