@@ -1,4 +1,4 @@
-package namelessgame;
+package de.neuwirthinformatik.Alexander.gl.test;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_COLOR_MATERIAL;
@@ -17,6 +17,9 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import java.util.ArrayList;
 import java.util.Random;
 
+import namelessgame.Player;
+import namelessgame.World;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Mouse;
@@ -27,10 +30,8 @@ import de.neuwirthinformatik.Alexander.gl.obejct.D3.Cube3D;
 import de.neuwirthinformatik.Alexander.gl.viewport.PerspectiveViewport;
 
 
-public class Game
+public class GameTest
 {
-
-	
 	private DisplayMode dm = Display.getDesktopDisplayMode();
 	private long lastFrame;
 	private World world;
@@ -72,6 +73,7 @@ public class Game
 		glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         player.changeMatrix();
+        vp0.apply();
         q.draw().render();
         //world.draw();
 	}

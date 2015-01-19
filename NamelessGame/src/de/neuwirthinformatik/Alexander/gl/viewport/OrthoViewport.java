@@ -21,11 +21,15 @@ public class OrthoViewport extends Viewport
 		this(x, y, d.width,d.height, left,right,bottom,top);
 	}
 	
+	public void init()
+	{
+		gluOrtho2D(left,right,top,bottom);
+	}
+	
 	@Override
 	public void apply()
 	{
 		super.apply();
-		gluOrtho2D(left,right,top,bottom);
 	}
 
 }

@@ -4,7 +4,9 @@ import static org.lwjgl.opengl.GL11.glViewport;
 
 import java.awt.Dimension;
 
-public class Viewport 
+import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
+
+public class Viewport implements Initable
 {
 	private int x,y,height,width;
 

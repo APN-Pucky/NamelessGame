@@ -4,6 +4,8 @@ import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import java.awt.Dimension;
 
+import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
+
 public class PerspectiveViewport extends Viewport
 {
 	private float fovy,near,far;
