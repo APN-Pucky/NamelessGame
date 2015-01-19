@@ -18,6 +18,7 @@ import static org.lwjgl.util.glu.GLU.gluPerspective;
 import java.util.Queue;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
@@ -39,14 +40,17 @@ public class RenderThread extends SyncThread  implements Initable
 			GLGlobal.setRenderRenderStatus(cur);
 			Queue<Renderable> rs = GLGlobal.getRenderStatus(cur);
 			preRender();
-			for(int i = 0; i < rs.size();i++)
+			int length = rs.size();
+			for(int i = 0; i < length;i++)
 			{
-				rs.remove().render();
+				Renderable ra = rs.remove();
+				ra.render();
 			}
 			postRender();
 			prev = cur;
 			Display.update();
-			sync(60);
+			Display.sync(30);
+			//sync(60);
 		}
 	}
 	
@@ -69,7 +73,7 @@ public class RenderThread extends SyncThread  implements Initable
             Display.setDisplayMode(Display.getDesktopDisplayMode());
             Display.setTitle("Game");
             Display.create();
-            Display.setFullscreen(true);
+            Display.setFullscreen(false);
             Mouse.setGrabbed(true);
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -81,8 +85,8 @@ public class RenderThread extends SyncThread  implements Initable
      	glColorMaterial(GL_FRONT, GL_DIFFUSE);
       	
 	  	glMatrixMode(GL_PROJECTION);
-	  	gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 300F);
-      	glLoadIdentity();
+	  	glLoadIdentity();
+	  	gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 200F);
       	glMatrixMode(GL_MODELVIEW);
       	glLoadIdentity();
       	glEnable(GL_DEPTH_TEST);

@@ -24,6 +24,7 @@ public class UpdateThread extends SyncThread implements Initable
 				urs++;
 			}
 			Queue<Renderable> rs = GLGlobal.getRenderStatus(urs);
+			rs.clear();
 			Updateable[] ua = GLGlobal.getUpdates();
 			for(int i = 0; i < ua.length;i++)
 			{
@@ -36,7 +37,7 @@ public class UpdateThread extends SyncThread implements Initable
 				}
 			}
 			GLGlobal.setCurrentRenderStatus(urs);
-			sync(60);
+			sync(30);
 		}
 	}
 

@@ -1,7 +1,4 @@
 package de.neuwirthinformatik.Alexander.gl.obejct.D3;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTranslatef;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
@@ -49,8 +46,8 @@ public class Player3D extends Object3D implements Drawable,Updateable
             }
         }
         
+		
         if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))GLGlobal.stop();
-        
         
         boolean keyUp = Keyboard.isKeyDown(Keyboard.KEY_UP) || Keyboard.isKeyDown(Keyboard.KEY_W);
         boolean keyDown = Keyboard.isKeyDown(Keyboard.KEY_DOWN) || Keyboard.isKeyDown(Keyboard.KEY_S);

@@ -32,35 +32,35 @@ public class CubeGL extends ObjectGL implements Renderable
 			glBegin(GL_QUADS);
  	       	
 				
-				glVertex3f(0,0,1);	    
-				glVertex3f(1,0,1);		    
-				glVertex3f(1,1,1);		    
-				glVertex3f(0,1,1);
+				glVertex3f(0,0,-1);	    
+				glVertex3f(-1,0,-1);		    
+				glVertex3f(-1,-1,-1);		    
+				glVertex3f(0,-1,-1);
 				
 	    		glVertex3f(0,0,0);	    
-	    		glVertex3f(1,0,0);		    
-	    		glVertex3f(1,1,0);		    
-	    		glVertex3f(0,1,0);
+	    		glVertex3f(-1,0,0);		    
+	    		glVertex3f(-1,-1,0);		    
+	    		glVertex3f(0,-1,0);
 	    		
-	    		glVertex3f(0,1,0);		    
-	    		glVertex3f(1,1,0);	
-	    		glVertex3f(1,1,1);
-	    		glVertex3f(0,1,1);	
-	    		
-	    		glVertex3f(0,0,0);		    
-	    		glVertex3f(1,0,0);	
-	    		glVertex3f(1,0,1);
-	    		glVertex3f(0,0,1);
-	    		
-	    		glVertex3f(1,0,0);		    
-	    		glVertex3f(1,1,0);	
-	    		glVertex3f(1,1,1);
-	    		glVertex3f(1,0,1);	
+	    		glVertex3f(0,-1,0);		    
+	    		glVertex3f(-1,-1,0);	
+	    		glVertex3f(-1,-1,-1);
+	    		glVertex3f(0,-1,-1);	
 	    		
 	    		glVertex3f(0,0,0);		    
-	    		glVertex3f(0,1,0);	
-	    		glVertex3f(0,1,1);
-	    		glVertex3f(0,0,1);
+	    		glVertex3f(-1,0,0);	
+	    		glVertex3f(-1,0,-1);
+	    		glVertex3f(0,0,-1);
+	    		
+	    		glVertex3f(-1,0,0);		    
+	    		glVertex3f(-1,-1,0);	
+	    		glVertex3f(-1,-1,-1);
+	    		glVertex3f(-1,0,-1);	
+	    		
+	    		glVertex3f(0,0,0);		    
+	    		glVertex3f(0,-1,0);	
+	    		glVertex3f(0,-1,-1);
+	    		glVertex3f(0,0,-1);
 	    		
 	    	
 	    	glEnd();
