@@ -14,6 +14,7 @@ public class UpdateThread extends SyncThread implements Initable
 	
 	public void run()
 	{
+		int j = 0;
 		while(running)
 		{
 			int rrs = GLGlobal.getRenderRenderStatus();
@@ -37,7 +38,7 @@ public class UpdateThread extends SyncThread implements Initable
 				}
 			}
 			GLGlobal.setCurrentRenderStatus(urs);
-			sync(30);
+			sync(60);
 		}
 	}
 

@@ -27,7 +27,7 @@ public class Player3D extends Object3D implements Drawable,Updateable
 	
 	public void update(long delta)
 	{
-		/*if (Mouse.isGrabbed()) {
+		if (Mouse.isGrabbed()) {
             float mouseDX = (float) (Mouse.getDX() * mouseSpeed * 0.16f);
             float mouseDY = (float) (Mouse.getDY() * mouseSpeed * 0.16f);
             if (data[4] + mouseDX >= 360) {
@@ -167,7 +167,7 @@ public class Player3D extends Object3D implements Drawable,Updateable
         }
         if (moveSlower && !moveFaster) {
             speed *= 10f;
-        }*/
+        }
 	}
 
 	@Override

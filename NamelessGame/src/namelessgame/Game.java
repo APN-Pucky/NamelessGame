@@ -99,6 +99,7 @@ public class Game
             Display.setTitle("Game");
             Display.create();
             Display.setFullscreen(true);
+            Display.setVSyncEnabled(true);
             Mouse.setGrabbed(true);
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -129,8 +130,8 @@ public class Game
         	list.add(r.nextInt(3));
         }
         world = new World(list,100);
-        //player = new Player3D(40, 1);
         player = new Player3D(40, 1);
+        //player = new Player3D(40, 1);
 	}
 	
 	private void stop()

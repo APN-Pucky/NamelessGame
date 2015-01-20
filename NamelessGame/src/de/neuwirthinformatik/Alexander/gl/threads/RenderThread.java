@@ -36,7 +36,17 @@ public class RenderThread extends SyncThread  implements Initable
 		int cur,prev=2;
 		while(running)
 		{
-			while((cur=GLGlobal.getCurrentRenderStatus()) == prev){}
+			while((cur=GLGlobal.getCurrentRenderStatus()) == prev)
+			{
+				try 
+				{
+					sleep(1);
+				} 
+				catch (InterruptedException e) 
+				{
+					e.printStackTrace();
+				}
+			}
 			GLGlobal.setRenderRenderStatus(cur);
 			Queue<Renderable> rs = GLGlobal.getRenderStatus(cur);
 			preRender();
@@ -49,8 +59,7 @@ public class RenderThread extends SyncThread  implements Initable
 			postRender();
 			prev = cur;
 			Display.update();
-			Display.sync(30);
-			//sync(30);
+			Display.sync(60);
 		}
 	}
 	
@@ -74,7 +83,7 @@ public class RenderThread extends SyncThread  implements Initable
             Display.setTitle("Game");
             Display.create();
             Display.setFullscreen(false);
-            //Mouse.setGrabbed(true);
+            Mouse.setGrabbed(true);
         } catch (LWJGLException e) {
             e.printStackTrace();
             Display.destroy();
