@@ -16,9 +16,9 @@ public class Player3D extends Object3D implements Drawable,Updateable
 	private double speed = 40;
 	private double mouseSpeed = 1;
 	//private static Vector3f rotation = new Vector3f(0,0,0);
-	//												m30,m31,m32
+	//												data[3],data[4],data[5]
 	//private static Vector3f position = new Vector3f(0,0,0);
-	//												m03,m13,m23
+	//												data[0],data[1],data[2]
 	public Player3D(double speed, double mousespeed)
 	{
 		this.speed = speed;
@@ -27,22 +27,22 @@ public class Player3D extends Object3D implements Drawable,Updateable
 	
 	public void update(long delta)
 	{
-		if (Mouse.isGrabbed()) {
+		/*if (Mouse.isGrabbed()) {
             float mouseDX = (float) (Mouse.getDX() * mouseSpeed * 0.16f);
             float mouseDY = (float) (Mouse.getDY() * mouseSpeed * 0.16f);
-            if (m31 + mouseDX >= 360) {
-                m31 = m31 + mouseDX - 360;
-            } else if (m31 + mouseDX < 0) {
-                m31 = 360 - m31 + mouseDX;
+            if (data[4] + mouseDX >= 360) {
+                data[4] = data[4] + mouseDX - 360;
+            } else if (data[4] + mouseDX < 0) {
+                data[4] = 360 - data[4] + mouseDX;
             } else {
-                m31 += mouseDX;
+                data[4] += mouseDX;
             }
-            if (m30 - mouseDY >= -90 && m30 - mouseDY <= 90) {
-                m30 += -mouseDY;
-            } else if (m30 - mouseDY < -90) {
-                m30 = -90;
-            } else if (m30 - mouseDY > 90) {
-                m30 = 90;
+            if (data[3] - mouseDY >= -90 && data[3] - mouseDY <= 90) {
+                data[3] += -mouseDY;
+            } else if (data[3] - mouseDY < -90) {
+                data[3] = -90;
+            } else if (data[3] - mouseDY > 90) {
+                data[3] = 90;
             }
         }
         
@@ -65,109 +65,109 @@ public class Player3D extends Object3D implements Drawable,Updateable
         }
         
         if (keyUp && keyRight && !keyLeft && !keyDown) {
-            float angle = m31 + 45;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4] + 45;
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyUp && keyLeft && !keyRight && !keyDown) {
-            float angle = m31 - 45;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4] - 45;
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyUp && !keyLeft && !keyRight && !keyDown) {
-            float angle = m31;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4];
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
 
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyDown && keyLeft && !keyRight && !keyUp) {
-            float angle = m31 - 135;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4] - 135;
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyDown && keyRight && !keyLeft && !keyUp) {
-            float angle = m31 + 135;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4] + 135;
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyDown && !keyUp && !keyLeft && !keyRight) {
-            float angle = m31;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4];
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) (-(speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyLeft && !keyRight && !keyUp && !keyDown) {
-            float angle = m31 - 90;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4] - 90;
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         if (keyRight && !keyLeft && !keyUp && !keyDown) {
-            float angle = m31 + 90;
-            Vector3f newPos = new Vector3f(m03,m13,m23);
+            float angle = data[4] + 90;
+            Vector3f newPos = new Vector3f(data[0],data[1],data[2]);
             float hypotenuse = (float) ((speed * 0.0002f) * delta);
             float adjacent = hypotenuse * (float) Math.cos(Math.toRadians(angle));
             float opposite = (float) (Math.sin(Math.toRadians(angle)) * hypotenuse);
             newPos.z += adjacent;
             newPos.x -= opposite;
-            m23 = newPos.z;
-            m03 = newPos.x;
+            data[2] = newPos.z;
+            data[0] = newPos.x;
         }
         
         if (flyUp && !flyDown) {
             double newPosY = (speed * 0.0002) * delta;
-            m13 -= newPosY;
+            data[1] -= newPosY;
         }
         if (flyDown && !flyUp) {
             double newPosY = (speed * 0.0002) * delta;
-            m13 += newPosY;
+            data[1] += newPosY;
         }
         if (moveFaster && !moveSlower) {
             speed /= 4f;
         }
         if (moveSlower && !moveFaster) {
             speed *= 10f;
-        }
+        }*/
 	}
 
 	@Override

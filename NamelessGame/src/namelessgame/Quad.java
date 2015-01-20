@@ -133,12 +133,12 @@ public class Quad
 	{
 		glPushMatrix();
 		glColor3f(red,green,blue);
-		glTranslatef(-position.x, -position.y, -position.z);
+		glTranslatef(position.x,position.y, position.z);
 		glRotatef(angel.x, 1, 0, 0);
         glRotatef(angel.y, 0, 1, 0);
         glRotatef(angel.z, 0, 0, 1);
-        glTranslatef(position.x, position.y, position.z);
-        glTranslatef(position.x, position.y, position.z);
+        //glTranslatef(position.x, position.y, position.z);
+        //glTranslatef(position.x, position.y, position.z);
         glScalef(scale.x,scale.y,scale.z);
         glCallList(quadlist);
         glCallList(linelist);

@@ -50,7 +50,7 @@ public class RenderThread extends SyncThread  implements Initable
 			prev = cur;
 			Display.update();
 			Display.sync(30);
-			//sync(60);
+			//sync(30);
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class RenderThread extends SyncThread  implements Initable
             Display.setTitle("Game");
             Display.create();
             Display.setFullscreen(false);
-            Mouse.setGrabbed(true);
+            //Mouse.setGrabbed(true);
         } catch (LWJGLException e) {
             e.printStackTrace();
             Display.destroy();
