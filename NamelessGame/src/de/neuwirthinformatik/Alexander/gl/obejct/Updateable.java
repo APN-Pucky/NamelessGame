@@ -1,5 +1,8 @@
 package de.neuwirthinformatik.Alexander.gl.obejct;
 
-public interface Updateable {
+import de.neuwirthinformatik.Alexander.gl.GLGlobalParam;
+
+public interface Updateable extends GLGlobalParam
+{
 	public void update(long delta);
 }

@@ -31,11 +31,12 @@ public class UpdateThread extends SyncThread
 			{
 				Updateable u = ua[i];
 				u.update(getDelta());
-				if(u instanceof Drawable)
-				{
-					Drawable d = (Drawable)u;
-					rs.add(d.draw());
-				}
+			}
+			Drawable[] da = GLGlobal.getDraws();
+			for(int i = 0; i < da.length;i++)
+			{
+				Drawable d = da[i];
+				rs.add(d.draw());
 			}
 			GLGlobal.setCurrentRenderStatus(urs);
 			sync(60);

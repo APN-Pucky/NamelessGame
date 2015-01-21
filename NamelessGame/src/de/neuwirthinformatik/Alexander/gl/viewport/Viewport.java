@@ -6,7 +6,7 @@ import java.awt.Dimension;
 
 import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
 
-public class Viewport implements Initable
+public class Viewport
 {
 	private int x,y,height,width;
 

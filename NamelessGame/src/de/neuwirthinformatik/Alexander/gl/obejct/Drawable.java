@@ -1,6 +1,8 @@
 package de.neuwirthinformatik.Alexander.gl.obejct;
 
-public interface Drawable extends Updateable
+import de.neuwirthinformatik.Alexander.gl.GLGlobalParam;
+
+public interface Drawable extends GLGlobalParam
 {
 	public Renderable draw();
 }

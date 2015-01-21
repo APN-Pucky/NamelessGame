@@ -1,10 +1,12 @@
 package de.neuwirthinformatik.Alexander.gl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import org.lwjgl.opengl.Display;
 
+import de.neuwirthinformatik.Alexander.gl.obejct.Drawable;
 import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
@@ -16,14 +18,16 @@ public class GLGlobal
 {
 	private static UpdateThread ut;
 	private static RenderThread rt;
-	private static Updateable[] updates;
+	private static Updateable[] updates = new Updateable[1];
+	private static Initable[] inits = new Initable[1];
+	private static Drawable[] draws = new Drawable[1];
 	private static Queue<Renderable> rs0,rs1,rs2;
 	private static int crs=2,rrs=2;
 	public static Object sync_swap;
 	
-	public static void init(Updateable[] update)
+	public static void init(GLGlobalParam[] m)
 	{
-		updates = update;
+		splitParam(m);
 		ut = new UpdateThread();
 		rt = new RenderThread();
 		rs0 = new LinkedList<Renderable>();
@@ -32,6 +36,41 @@ public class GLGlobal
 		//-- Init
 	  	GLGlobal.init(InitLevel.FIRST);
 	  	//## Init
+	}
+	
+	public static void splitParam(GLGlobalParam[] m)
+	{
+		ArrayList<Updateable> update = new ArrayList<Updateable>();
+		ArrayList<Drawable> draw = new ArrayList<Drawable>();
+		ArrayList<Initable> init = new ArrayList<Initable>();
+		for(GLGlobalParam mx : m)
+		{
+			if(mx instanceof Updateable)
+			{
+				update.add((Updateable) mx);
+			}
+			if(mx instanceof Initable)
+			{
+				init.add((Initable) mx);
+			}
+			if(mx instanceof Drawable)
+			{
+				draw.add((Drawable) mx);
+			}
+		}
+		updates = (Updateable[])update.toArray(updates);
+		inits = (Initable[])init.toArray(inits);
+		draws = (Drawable[])draw.toArray(draws);
+	}
+	
+	public static Drawable[] getDraws()
+	{
+		return draws;
+	}
+	
+	public static Initable[] getInits()
+	{
+		return inits;
 	}
 	
 	public static Updateable[] getUpdates()
@@ -72,15 +111,12 @@ public class GLGlobal
 	
 	public static void init(int initlevel)
 	{
-		Updateable[] ua = GLGlobal.getUpdates();
-		for(int i = 0; i < ua.length;i++)
+		Initable[] ia = GLGlobal.getInits();
+		for(int i = 0; i < ia.length;i++)
 		{
-			Updateable u = ua[i];
-			if(u instanceof Initable)
-			{
-				Initable init = (Initable)u;
-				if(init.getInitLevel() == initlevel)init.init();
-			}
+			Initable init = ia[i];
+			if(init.getInitLevel() == initlevel)init.init();
+			
 		}
 	}
 	
