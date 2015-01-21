@@ -24,6 +24,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import de.neuwirthinformatik.Alexander.gl.obejct.D3.Cube3D;
+import de.neuwirthinformatik.Alexander.gl.obejct.D3.Player3D;
 import de.neuwirthinformatik.Alexander.gl.threads.RenderThread;
 import de.neuwirthinformatik.Alexander.gl.viewport.PerspectiveViewport;
 
@@ -35,9 +36,10 @@ public class Game
 	private DisplayMode dm = Display.getDesktopDisplayMode();
 	private long lastFrame;
 	private World world;
-	private Player player;
+	//private Player player;
 	private Random r = new Random();
 	private PerspectiveViewport vp0 = new PerspectiveViewport(0,0,dm.getWidth(),dm.getHeight(),30,0.001f,200);
+	private Player3D player;
 	private Cube3D q = new Cube3D();
 	RenderThread rt;
 
@@ -61,6 +63,7 @@ public class Game
 	private void update(long delta) 
 	{
 		player.update(delta);
+		q.update(delta);
 	}
 
 	private void loadBuffers() 
@@ -74,7 +77,7 @@ public class Game
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        player.changeMatrix();
+        player.draw().render();
         //q.draw().render();
         world.draw();
 	}
@@ -96,6 +99,7 @@ public class Game
             Display.setTitle("Game");
             Display.create();
             Display.setFullscreen(true);
+            Display.setVSyncEnabled(true);
             Mouse.setGrabbed(true);
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -126,7 +130,8 @@ public class Game
         	list.add(r.nextInt(3));
         }
         world = new World(list,100);
-        player = new Player(40, 1);
+        player = new Player3D(40, 1);
+        //player = new Player3D(40, 1);
 	}
 	
 	private void stop()

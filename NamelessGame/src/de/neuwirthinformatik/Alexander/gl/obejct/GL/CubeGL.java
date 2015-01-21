@@ -6,8 +6,6 @@ import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glVertex3f;
-import static org.lwjgl.opengl.GL11.*;
-
 import de.neuwirthinformatik.Alexander.gl.obejct.Object;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
 import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
@@ -17,18 +15,14 @@ public class CubeGL extends ObjectGL implements Renderable
 	
 	public CubeGL(Object o)
 	{
-		super();
-		setArray(o.toArray());
-		this.store(getFloatBuffer());
-		getFloatBuffer().rewind();
+		super(o);
 	}
 
 	@Override
 	public void render() 
 	{
 		glPushMatrix();
-			glMultMatrix(getFloatBuffer());
-			
+			applyData();
 			glBegin(GL_QUADS);
  	       	
 				

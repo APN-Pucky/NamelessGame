@@ -23,7 +23,7 @@ public class Cube3D extends Object3D implements Drawable
 	@Override
 	public void update(long delta) 
 	{
-		
+		this.move(new Vektor(0,0,-0.010F));
 	}
 
 }

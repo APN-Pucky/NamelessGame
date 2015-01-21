@@ -5,30 +5,36 @@ import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.util.vector.Matrix4f;
 
-public abstract class Object extends Matrix4f
+public abstract class Object
 {
-	FloatBuffer fl = BufferUtils.createFloatBuffer(16);
-	
+	public float[] data = new float[]{	0,0,0,		//pos
+										0,0,0,		//rotation
+										1,1,1,		//scale
+										255,255,255,		//color
+										0.15F,0.15F,0.15F,1,	//ambient
+										1,1,1,1,	//diffuse
+										0,0,0,1,	//spekular
+										0,0,0,1,	//emission
+										0,0,0,0,	//texture
+										};
 	public Object()
 	{
-		setIdentity();
+		
 	}
 	
-	public FloatBuffer getFloatBuffer()
+	public Object(Object o)
 	{
-		return fl;
+		setArray(o.getArray());
 	}
 	
-	public float[] toArray()
+	public float[] getArray()
 	{
-		return new float[]{m00,m10,m20,m30,m01,m11,m21,m31,m02,m12,m22,m32,m03,m13,m23,m33};
+		return data;
 	}
 	
 	public void setArray(float[] f)
 	{
-		m00=f[0];m01=f[4];m02=f[8];m03=f[12];
-		m10=f[1];m11=f[5];m12=f[9];m13=f[13];
-		m20=f[2];m21=f[6];m22=f[10];m23=f[14];
-		m30=f[3];m31=f[7];m32=f[11];m33=f[15];
+		if(f.length != data.length)return;
+		System.arraycopy(f, 0, data, 0, f.length);
 	}
 }
