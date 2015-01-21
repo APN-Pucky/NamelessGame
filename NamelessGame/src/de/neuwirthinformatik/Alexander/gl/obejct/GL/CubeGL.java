@@ -6,12 +6,14 @@ import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glVertex3f;
+import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Object;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
 import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 
 public class CubeGL extends ObjectGL implements Renderable
 {
+	private static boolean init = false;
 	
 	public CubeGL(Object o)
 	{
@@ -60,5 +62,22 @@ public class CubeGL extends ObjectGL implements Renderable
 	    	glEnd();
 
 		glPopMatrix();
+	}
+	
+	@Override
+	public void init() 
+	{
+		if(!init)
+		{
+			init = true;
+			//code
+			
+		}
+	}
+	
+	@Override
+	public int getInitLevel()
+	{
+		return InitLevel.PREFRAME;
 	}
 }

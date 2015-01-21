@@ -10,13 +10,7 @@ public class Cube3D extends Object3D
 
 	public Cube3D()
 	{
-		super();
-	}
-	
-	@Override
-	public Renderable draw() 
-	{
-		return new CubeGL(this);
+		super(CubeGL.class);
 	}
 
 	@Override

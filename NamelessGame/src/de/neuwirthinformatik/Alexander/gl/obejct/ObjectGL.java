@@ -8,6 +8,7 @@ import static org.lwjgl.opengl.GL11.glTranslatef;
 
 public abstract class ObjectGL extends Object implements Renderable
 {
+	
 	public ObjectGL()
 	{
 		super();

@@ -21,6 +21,7 @@ public class Player3D extends Object3D
 	//												data[0],data[1],data[2]
 	public Player3D(double speed, double mousespeed)
 	{
+		super(PlayerGL.class);
 		this.speed = speed;
 		this.mouseSpeed = mousespeed;
 	}
@@ -168,11 +169,5 @@ public class Player3D extends Object3D
         if (moveSlower && !moveFaster) {
             speed *= 10f;
         }
-	}
-
-	@Override
-	public Renderable draw() 
-	{
-		return new PlayerGL(this);
 	}
 }

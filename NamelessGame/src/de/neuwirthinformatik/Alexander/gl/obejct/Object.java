@@ -5,7 +5,7 @@ import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.util.vector.Matrix4f;
 
-public abstract class Object
+public abstract class Object implements Initable
 {
 	public float[] data = new float[]{	0,0,0,		//pos
 										0,0,0,		//rotation
@@ -17,6 +17,7 @@ public abstract class Object
 										0,0,0,1,	//emission
 										0,0,0,0,	//texture
 										};
+	
 	public Object()
 	{
 		

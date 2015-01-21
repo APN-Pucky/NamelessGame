@@ -23,10 +23,11 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
 import de.neuwirthinformatik.Alexander.gl.GLGlobal;
+import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 
-public class RenderThread extends SyncThread  implements Initable
+public class RenderThread extends SyncThread
 {
 	
 	public void run()
@@ -75,14 +76,14 @@ public class RenderThread extends SyncThread  implements Initable
 		
 	}
 
-	@Override
 	public void init() 
 	{
 		try {
             Display.setDisplayMode(Display.getDesktopDisplayMode());
             Display.setTitle("Game");
             Display.create();
-            Display.setFullscreen(false);
+            Display.setFullscreen(true);
+            Display.setVSyncEnabled(true);
             Mouse.setGrabbed(true);
         } catch (LWJGLException e) {
             e.printStackTrace();
@@ -95,8 +96,10 @@ public class RenderThread extends SyncThread  implements Initable
       	
 	  	glMatrixMode(GL_PROJECTION);
 	  	glLoadIdentity();
-	  	gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 200F);
-      	glMatrixMode(GL_MODELVIEW);
+	  	//-- Init
+	  	GLGlobal.init(InitLevel.PERSPECTIVE);
+	  	//## Init
+	  	glMatrixMode(GL_MODELVIEW);
       	glLoadIdentity();
       	glEnable(GL_DEPTH_TEST);
 	}

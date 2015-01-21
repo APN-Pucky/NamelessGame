@@ -4,11 +4,12 @@ import java.util.Queue;
 
 import de.neuwirthinformatik.Alexander.gl.GLGlobal;
 import de.neuwirthinformatik.Alexander.gl.obejct.Drawable;
+import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Updateable;
 
-public class UpdateThread extends SyncThread implements Initable
+public class UpdateThread extends SyncThread
 {
 	
 	public void run()
@@ -38,18 +39,6 @@ public class UpdateThread extends SyncThread implements Initable
 			}
 			GLGlobal.setCurrentRenderStatus(urs);
 			sync(60);
-		}
-	}
-
-	@Override
-	public void init() 
-	{
-		for(Updateable u : GLGlobal.getUpdates())
-		{
-			if(u instanceof Initable)
-			{
-				((Initable)u).init();
-			}
 		}
 	}
 }

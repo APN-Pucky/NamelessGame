@@ -5,6 +5,8 @@ import java.util.Queue;
 
 import org.lwjgl.opengl.Display;
 
+import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
+import de.neuwirthinformatik.Alexander.gl.obejct.Initable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Updateable;
 import de.neuwirthinformatik.Alexander.gl.threads.RenderThread;
@@ -27,8 +29,9 @@ public class GLGlobal
 		rs0 = new LinkedList<Renderable>();
 		rs1 = new LinkedList<Renderable>();
 		rs2 = new LinkedList<Renderable>();
-		ut.init();
-		//rt.init();
+		//-- Init
+	  	GLGlobal.init(InitLevel.FIRST);
+	  	//## Init
 	}
 	
 	public static Updateable[] getUpdates()
@@ -64,6 +67,20 @@ public class GLGlobal
 			case(1):return rs1;
 			case(2):return rs2;
 			default:return null;
+		}
+	}
+	
+	public static void init(int initlevel)
+	{
+		Updateable[] ua = GLGlobal.getUpdates();
+		for(int i = 0; i < ua.length;i++)
+		{
+			Updateable u = ua[i];
+			if(u instanceof Initable)
+			{
+				Initable init = (Initable)u;
+				if(init.getInitLevel() == initlevel)init.init();
+			}
 		}
 	}
 	
