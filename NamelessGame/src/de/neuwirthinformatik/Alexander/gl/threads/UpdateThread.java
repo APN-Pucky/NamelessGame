@@ -10,7 +10,6 @@ import de.neuwirthinformatik.Alexander.gl.obejct.Updateable;
 
 public class UpdateThread extends SyncThread implements Initable
 {
-	boolean running = true;
 	
 	public void run()
 	{

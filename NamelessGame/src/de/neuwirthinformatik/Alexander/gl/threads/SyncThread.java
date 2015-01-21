@@ -6,6 +6,7 @@ public class SyncThread extends Thread
 	private long prev;
 	private int millis; 
 	private long delta;
+	protected boolean running = true;
 	boolean init = true;
 	
 	public void sync(float fps)
@@ -50,5 +51,10 @@ public class SyncThread extends Thread
 		cur = System.currentTimeMillis();
 		delta = cur-prev;
 		prev = System.currentTimeMillis();
+	}
+	
+	public void stopExec()
+	{
+		running = false;
 	}
 }

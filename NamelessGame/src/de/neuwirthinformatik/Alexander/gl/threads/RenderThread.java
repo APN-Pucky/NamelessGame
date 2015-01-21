@@ -28,7 +28,6 @@ import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 
 public class RenderThread extends SyncThread  implements Initable
 {
-	boolean running = true;
 	
 	public void run()
 	{
@@ -61,6 +60,7 @@ public class RenderThread extends SyncThread  implements Initable
 			Display.update();
 			Display.sync(60);
 		}
+		GLGlobal.clean();
 	}
 	
 	public void preRender()

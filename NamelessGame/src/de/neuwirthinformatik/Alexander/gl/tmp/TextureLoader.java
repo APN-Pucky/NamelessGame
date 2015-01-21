@@ -15,6 +15,7 @@ import static org.lwjgl.opengl.GL11.glTexImage2D;
 import static org.lwjgl.opengl.GL11.glTexParameteri;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -69,7 +70,7 @@ public class TextureLoader {
        public static BufferedImage loadImage(String loc)
        {
             try {
-               return ImageIO.read(MainClass.class.getResource(loc));
+               return ImageIO.read(ClassLoader.getSystemResource(loc));
             } catch (IOException e) {
                 //Error Handling Here
             }

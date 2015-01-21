@@ -82,6 +82,12 @@ public class GLGlobal
 	
 	public static void stop()
 	{
+		ut.stopExec();
+		rt.stopExec();
+	}
+	
+	public static void clean()
+	{
 		Display.destroy();
 	    System.exit(0);
 	}
