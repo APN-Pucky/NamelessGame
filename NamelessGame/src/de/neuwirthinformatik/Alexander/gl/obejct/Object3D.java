@@ -1,7 +1,7 @@
 package de.neuwirthinformatik.Alexander.gl.obejct;
 
 
-public abstract class Object3D extends Object implements Drawable
+public abstract class Object3D extends Object implements Drawable, Updateable
 {
 	public Object3D()
 	{
@@ -14,6 +14,7 @@ public abstract class Object3D extends Object implements Drawable
 	}
 	
 	public abstract Renderable draw();
+	public abstract void update(long delta);
 	
 
 	

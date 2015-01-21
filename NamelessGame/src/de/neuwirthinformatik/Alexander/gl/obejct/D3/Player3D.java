@@ -11,7 +11,7 @@ import de.neuwirthinformatik.Alexander.gl.obejct.Updateable;
 import de.neuwirthinformatik.Alexander.gl.obejct.GL.PlayerGL;
 
 
-public class Player3D extends Object3D implements Drawable,Updateable
+public class Player3D extends Object3D
 {
 	private double speed = 40;
 	private double mouseSpeed = 1;
