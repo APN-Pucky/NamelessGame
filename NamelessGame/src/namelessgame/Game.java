@@ -1,16 +1,25 @@
 package namelessgame;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_COLOR_MATERIAL;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
+import static org.lwjgl.opengl.GL11.GL_DIFFUSE;
+import static org.lwjgl.opengl.GL11.GL_FRONT;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
 import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glColorMaterial;
+import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
@@ -66,8 +75,8 @@ public class Game
 		glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         player.changeMatrix();
-        q.draw().render();
-        //world.draw();
+        //q.draw().render();
+        world.draw();
 	}
 
 	private double getDelta() 
@@ -80,9 +89,9 @@ public class Game
 
 	private void init()
 	{
-		rt = new RenderThread();
-		rt.init();
-		/*try {
+		//rt = new RenderThread();
+		//rt.init();
+		try {
             Display.setDisplayMode(dm);
             Display.setTitle("Game");
             Display.create();
@@ -105,7 +114,7 @@ public class Game
       	glLoadIdentity();
       	glEnable(GL_DEPTH_TEST);
       	
-      	*/
+      	
 		lastFrame = getTime();
         getDelta();
         
