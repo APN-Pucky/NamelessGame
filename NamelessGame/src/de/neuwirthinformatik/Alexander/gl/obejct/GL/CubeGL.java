@@ -1,11 +1,13 @@
 package de.neuwirthinformatik.Alexander.gl.obejct.GL;
 
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glVertex3f;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+
+import java.nio.FloatBuffer;
+
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL15;
+
 import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Object;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
@@ -14,6 +16,7 @@ import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 public class CubeGL extends ObjectGL implements Renderable
 {
 	private static boolean init = false;
+	private static int id;
 	
 	public CubeGL(Object o)
 	{
@@ -25,42 +28,10 @@ public class CubeGL extends ObjectGL implements Renderable
 	{
 		glPushMatrix();
 			applyData();
-			glBegin(GL_QUADS);
- 	       	
-				
-				glVertex3f(0,0,-1);	    
-				glVertex3f(-1,0,-1);		    
-				glVertex3f(-1,-1,-1);		    
-				glVertex3f(0,-1,-1);
-				
-	    		glVertex3f(0,0,0);	    
-	    		glVertex3f(-1,0,0);		    
-	    		glVertex3f(-1,-1,0);		    
-	    		glVertex3f(0,-1,0);
-	    		
-	    		glVertex3f(0,-1,0);		    
-	    		glVertex3f(-1,-1,0);	
-	    		glVertex3f(-1,-1,-1);
-	    		glVertex3f(0,-1,-1);	
-	    		
-	    		glVertex3f(0,0,0);		    
-	    		glVertex3f(-1,0,0);	
-	    		glVertex3f(-1,0,-1);
-	    		glVertex3f(0,0,-1);
-	    		
-	    		glVertex3f(-1,0,0);		    
-	    		glVertex3f(-1,-1,0);	
-	    		glVertex3f(-1,-1,-1);
-	    		glVertex3f(-1,0,-1);	
-	    		
-	    		glVertex3f(0,0,0);		    
-	    		glVertex3f(0,-1,0);	
-	    		glVertex3f(0,-1,-1);
-	    		glVertex3f(0,0,-1);
-	    		
-	    	
-	    	glEnd();
-
+			glEnableClientState(GL_VERTEX_ARRAY);
+		    glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+		    glVertexPointer(3, GL_FLOAT, 0, 0);
+		    glDrawArrays(GL_QUADS, 0, 24);
 		glPopMatrix();
 	}
 	
@@ -71,13 +42,47 @@ public class CubeGL extends ObjectGL implements Renderable
 		{
 			init = true;
 			//code
+			id = glGenBuffers();
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+			float[] fb = new float[]{	0,0,-1,	    
+										-1,0,-1,		    
+										-1,-1,-1,		    
+										0,-1,-1,
 			
+										0,0,0,	    
+										-1,0,0,		    
+										-1,-1,0,		    
+										0,-1,0,
+    		
+										0,-1,0,		    
+										-1,-1,0,	
+										-1,-1,-1,
+										0,-1,-1,	
+    		
+										0,0,0,		    
+										-1,0,0,	
+										-1,0,-1,
+										0,0,-1,
+    		
+										-1,0,0,		    
+										-1,-1,0,	
+										-1,-1,-1,
+										-1,0,-1,	
+    		
+										0,0,0,		    
+										0,-1,0,	
+										0,-1,-1,
+										0,0,-1	};
+			FloatBuffer buffer = BufferUtils.createFloatBuffer(fb.length);
+			buffer.put(fb);
+			buffer.rewind();
+			GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
 		}
 	}
 	
 	@Override
 	public int getInitLevel()
 	{
-		return InitLevel.PREFRAME;
+		return InitLevel.POSTFRAME;
 	}
 }

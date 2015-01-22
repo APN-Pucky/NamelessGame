@@ -1,8 +1,6 @@
 package de.neuwirthinformatik.Alexander.gl.obejct.GL;
 
-import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glScalef;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 

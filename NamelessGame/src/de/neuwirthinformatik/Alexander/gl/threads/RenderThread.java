@@ -90,6 +90,9 @@ public class RenderThread extends SyncThread
             Display.destroy();
             System.exit(1);
         }
+	  	//-- Init
+	  	GLGlobal.init(InitLevel.POSTFRAME);
+	  	//## Init
 		
 		glEnable(GL_COLOR_MATERIAL);
      	glColorMaterial(GL_FRONT, GL_DIFFUSE);

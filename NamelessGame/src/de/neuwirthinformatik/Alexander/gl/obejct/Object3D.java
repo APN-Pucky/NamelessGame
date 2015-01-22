@@ -52,7 +52,7 @@ public abstract class Object3D extends Object implements Drawable, Updateable
 	}
 	
 	//final
-	public final Renderable draw()
+	public Renderable draw()
 	{
 		Renderable r = null;
 		try 
@@ -68,7 +68,7 @@ public abstract class Object3D extends Object implements Drawable, Updateable
 	}
 	
 	@Override
-	public final void init()
+	public void init()
 	{
 		try 
 		{
@@ -81,7 +81,7 @@ public abstract class Object3D extends Object implements Drawable, Updateable
 	}
 	
 	@Override
-	public final int getInitLevel()
+	public int getInitLevel()
 	{
 		try 
 		{
