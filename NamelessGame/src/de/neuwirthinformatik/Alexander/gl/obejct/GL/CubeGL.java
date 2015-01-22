@@ -8,6 +8,7 @@ import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL15;
 
+import de.neuwirthinformatik.Alexander.gl.GLUtil;
 import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Object;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
@@ -16,7 +17,8 @@ import de.neuwirthinformatik.Alexander.gl.obejct.Renderable;
 public class CubeGL extends ObjectGL implements Renderable
 {
 	private static boolean init = false;
-	private static int id;
+	private static int vertexid;
+	private static int colorid;
 	
 	public CubeGL(Object o)
 	{
@@ -29,8 +31,13 @@ public class CubeGL extends ObjectGL implements Renderable
 		glPushMatrix();
 			applyData();
 			glEnableClientState(GL_VERTEX_ARRAY);
-		    glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+		    glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
 		    glVertexPointer(3, GL_FLOAT, 0, 0);
+		    
+		    glEnableClientState(GL_COLOR_ARRAY);
+		    glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
+		    glColorPointer(3, GL_FLOAT, 0, 0);
+		    
 		    glDrawArrays(GL_QUADS, 0, 24);
 		glPopMatrix();
 	}
@@ -42,8 +49,9 @@ public class CubeGL extends ObjectGL implements Renderable
 		{
 			init = true;
 			//code
-			id = glGenBuffers();
-			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
+			vertexid = glGenBuffers();
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
+			
 			float[] fb = new float[]{	0,0,-1,	    
 										-1,0,-1,		    
 										-1,-1,-1,		    
@@ -73,10 +81,43 @@ public class CubeGL extends ObjectGL implements Renderable
 										0,-1,0,	
 										0,-1,-1,
 										0,0,-1	};
-			FloatBuffer buffer = BufferUtils.createFloatBuffer(fb.length);
-			buffer.put(fb);
-			buffer.rewind();
-			GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
+			
+			GL15.glBufferData(GL15.GL_ARRAY_BUFFER, GLUtil.toFloatBuffer(fb), GL15.GL_STATIC_DRAW);
+			
+			colorid = glGenBuffers();
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
+			
+			fb = new float[]{			0,0,255,	    
+										255,0,255,		    
+										255,255,255,		    
+										0,255,255,
+			
+										0,0,0,	    
+										255,0,0,		    
+										255,255,0,		    
+										0,255,0,
+    		
+										0,255,0,		    
+										255,255,0,	
+										255,255,255,
+										0,255,255,	
+    		
+										0,0,0,		    
+										255,0,0,	
+										255,0,255,
+										0,0,255,
+    		
+										255,0,0,		    
+										255,255,0,	
+										255,255,255,
+										255,0,255,	
+    		
+										0,0,0,		    
+										0,255,0,	
+										0,255,255,
+										0,0,255	};
+			
+			GL15.glBufferData(GL15.GL_ARRAY_BUFFER, GLUtil.toFloatBuffer(fb), GL15.GL_STATIC_DRAW);
 		}
 	}
 	
