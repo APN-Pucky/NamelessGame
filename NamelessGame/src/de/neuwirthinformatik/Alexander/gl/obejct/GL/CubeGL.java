@@ -34,9 +34,9 @@ public class CubeGL extends ObjectGL implements Renderable
 		    glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
 		    glVertexPointer(3, GL_FLOAT, 0, 0);
 		    
-		    glEnableClientState(GL_COLOR_ARRAY);
-		    glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
-		    glColorPointer(3, GL_FLOAT, 0, 0);
+		    //glEnableClientState(GL_COLOR_ARRAY);
+		    //glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
+		    //glColorPointer(3, GL_FLOAT, 0, 0);
 		    
 		    glDrawArrays(GL_QUADS, 0, 24);
 		glPopMatrix();
@@ -49,8 +49,6 @@ public class CubeGL extends ObjectGL implements Renderable
 		{
 			init = true;
 			//code
-			vertexid = glGenBuffers();
-			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
 			
 			float[] fb = new float[]{	0,0,-1,	    
 										-1,0,-1,		    
@@ -81,11 +79,12 @@ public class CubeGL extends ObjectGL implements Renderable
 										0,-1,0,	
 										0,-1,-1,
 										0,0,-1	};
-			
+
+			vertexid = glGenBuffers();
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
 			GL15.glBufferData(GL15.GL_ARRAY_BUFFER, GLUtil.toFloatBuffer(fb), GL15.GL_STATIC_DRAW);
 			
-			colorid = glGenBuffers();
-			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
+			
 			
 			fb = new float[]{			0,0,255,	    
 										255,0,255,		    
@@ -116,12 +115,12 @@ public class CubeGL extends ObjectGL implements Renderable
 										0,255,0,	
 										0,255,255,
 										0,0,255	};
-			
+			colorid = glGenBuffers();
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
 			GL15.glBufferData(GL15.GL_ARRAY_BUFFER, GLUtil.toFloatBuffer(fb), GL15.GL_STATIC_DRAW);
 		}
 	}
 	
-	@Override
 	public int getInitLevel()
 	{
 		return InitLevel.POSTFRAME;

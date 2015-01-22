@@ -8,4 +8,9 @@ public class Vektor extends Vector3f
 	{
 		super(x,y,z);
 	}
+	
+	public Vektor(Vektor v)
+	{
+		super(v.x,v.y,v.z);
+	}
 }

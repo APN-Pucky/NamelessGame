@@ -10,11 +10,11 @@ import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Object;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
 
-public class PlayerGL extends ObjectGL
+public class CameraGL extends ObjectGL
 {
-	private static boolean init = false;
+private static boolean init = false;
 	
-	public PlayerGL(Object o)
+	public CameraGL(Object o)
 	{
 		super(o);
 	}
@@ -37,6 +37,7 @@ public class PlayerGL extends ObjectGL
 			init = true;
 			//code
 			gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 200F);
+			
 		}
 	}
 	@Override

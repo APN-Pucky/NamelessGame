@@ -13,4 +13,15 @@ public class GLUtil
 		buffer.rewind();
 		return buffer;
 	}
+	
+	public static FloatBuffer toFloatBuffer(Float[] fb)
+	{
+		FloatBuffer buffer = BufferUtils.createFloatBuffer(fb.length);
+		for(int i = 0; i < fb.length; i++)
+		{
+			buffer.put((float)fb[i]);
+		}
+		buffer.rewind();
+		return buffer;
+	}
 }

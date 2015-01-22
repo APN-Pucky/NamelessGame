@@ -41,14 +41,30 @@ public abstract class Object3D extends Object implements Drawable, Updateable
 		data[2] += v.z;
 	}
 	
+	public void setScale(Vektor v)
+	{
+		data[6] = v.x;
+		data[7] = v.y;
+		data[8] = v.z;
+	}
+	
 	public Vektor getPosition()
 	{
 		return new Vektor(data[0],data[1],data[2]);
 	}
 	
-	public void rotate(double a, Vektor m, Vektor p)
+	public void setRotation(float x, float y, float z)
 	{
-		//...
+		data[3] = x;
+		data[4] = y;
+		data[5] = z;
+	}
+	
+	public void setColor(float r, float g, float b)
+	{
+		data[9] = r;
+		data[10] = g;
+		data[11] = b;
 	}
 	
 	//final

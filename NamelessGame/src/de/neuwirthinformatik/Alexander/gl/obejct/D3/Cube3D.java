@@ -16,7 +16,7 @@ public class Cube3D extends Object3D
 	@Override
 	public void update(long delta) 
 	{
-		this.move(new Vektor(0,0,-0.00010F*delta));
+		
 	}
 
 }

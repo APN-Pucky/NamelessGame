@@ -39,6 +39,7 @@ public class Game
 	//private Player player;
 	private Random r = new Random();
 	private PerspectiveViewport vp0 = new PerspectiveViewport(0,0,dm.getWidth(),dm.getHeight(),30,0.001f,200);
+	private PerspectiveViewport vp1 = new PerspectiveViewport(0,0,dm.getWidth()/2,dm.getHeight()/2,30,0.001f,200);
 	private Player3D player;
 	private Cube3D q = new Cube3D();
 	RenderThread rt;
@@ -77,6 +78,7 @@ public class Game
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+        vp1.apply();
         player.draw().render();
         //q.draw().render();
         world.draw();
@@ -114,6 +116,7 @@ public class Game
 	  	
       	glLoadIdentity();
       	vp0.init();
+      	vp1.init();
       	glMatrixMode(GL_MODELVIEW);
       	glLoadIdentity();
       	glEnable(GL_DEPTH_TEST);
