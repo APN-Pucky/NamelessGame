@@ -34,9 +34,9 @@ public class CubeGL extends ObjectGL implements Renderable
 		    glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
 		    glVertexPointer(3, GL_FLOAT, 0, 0);
 		    
-		    //glEnableClientState(GL_COLOR_ARRAY);
-		    //glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
-		    //glColorPointer(3, GL_FLOAT, 0, 0);
+		    glEnableClientState(GL_COLOR_ARRAY);
+		    glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
+		    glColorPointer(3, GL_FLOAT, 0, 0);
 		    
 		    glDrawArrays(GL_QUADS, 0, 24);
 		glPopMatrix();
