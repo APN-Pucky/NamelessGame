@@ -8,9 +8,10 @@ import de.neuwirthinformatik.Alexander.gl.obejct.GL.SimulationGL;
 
 public class Simulation3D extends Object3D
 {
-	public Simulation3D()
+	public Simulation3D(float pHeight)
 	{
 		super(SimulationGL.class);
+		SimulationGL.pHeight = pHeight;
 	}
 
 	@Override

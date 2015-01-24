@@ -142,6 +142,5 @@ public class GLGlobal
 	public static void clean()
 	{
 		Display.destroy();
-	    System.exit(0);
 	}
 }

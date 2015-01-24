@@ -12,7 +12,8 @@ import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
 
 public class SimulationGL extends ObjectGL
 {
-private static boolean init = false;
+	private static boolean init = false;
+	public static float pHeight;
 	
 	public SimulationGL(Object o)
 	{
@@ -38,7 +39,7 @@ private static boolean init = false;
 			//code
 			//gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 200F);
 			float a = (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight();
-			GL11.glOrtho(-300*a,300*a,-300,300,-100,100);
+			GL11.glOrtho(-pHeight*50*a,pHeight*50*a,-pHeight*50,pHeight*50,-100,100);
 		}
 	}
 	@Override

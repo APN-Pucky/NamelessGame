@@ -4,19 +4,21 @@ import de.neuwirthinformatik.Alexander.gl.obejct.Vektor;
 import de.neuwirthinformatik.Alexander.gl.obejct.D3.LLSphereLine3D;
 import de.neuwirthinformatik.Alexander.gl.obejct.D3.Sphere3D;
 
-public class Alpha extends LLSphereLine3D
+public class TestObj extends LLSphereLine3D
 {
 	Vektor speed = new Vektor(0,0,0);//	m/s
 	Vektor force = new Vektor(0,0,0);//	N
 	Vektor pB;//	T
 	Vektor pE;//	N/C
-	double pm = 6.64465675e-27;//	kg
-	double pq = 3.204e-19;//	C
+	double pm;//	kg
+	double pq;//	C
 	
-	public Alpha(Vektor pB, Vektor pE) {
+	public TestObj(Vektor pB, Vektor pE, double pm, double pq) {
 		super();
 		this.pE = pE;
 		this.pB = pB;
+		this.pm = pm;
+		this.pq = pq;
 	}
 	
 	public void setSpeed(Vektor pSpeed) 
@@ -42,7 +44,7 @@ public class Alpha extends LLSphereLine3D
 	
 	public void move(double time) {
 		Vektor pSpeed = new Vektor(speed);
-		pSpeed.mult((float) time);
+		pSpeed.mult((float) time*100);//mult 100 -> 1m = 100p
 		move(pSpeed);
 	}
 	public void calcForce() 

@@ -83,9 +83,9 @@ public class RenderThread extends SyncThread
 	{
 		try {
             Display.setDisplayMode(Display.getDesktopDisplayMode());
-            Display.setTitle("Game");
+            Display.setTitle("Physik Q1.1: Wien-Filter-Simulation <=> Alexander Puck Neuwirth");
             Display.create();
-            Display.setFullscreen(true);
+            Display.setFullscreen(false);
             Display.setVSyncEnabled(true);
             Mouse.setGrabbed(true);
         } catch (LWJGLException e) {

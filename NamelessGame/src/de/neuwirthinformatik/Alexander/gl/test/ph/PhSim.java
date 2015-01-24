@@ -3,66 +3,86 @@ package de.neuwirthinformatik.Alexander.gl.test.ph;
 import de.neuwirthinformatik.Alexander.gl.GLGlobal;
 import de.neuwirthinformatik.Alexander.gl.obejct.Updateable;
 import de.neuwirthinformatik.Alexander.gl.obejct.Vektor;
-import de.neuwirthinformatik.Alexander.gl.obejct.D3.Simulation3D;
 import de.neuwirthinformatik.Alexander.gl.obejct.D3.Cube3D;
-import de.neuwirthinformatik.Alexander.gl.obejct.D3.Sphere3D;
-import de.neuwirthinformatik.Alexander.gl.obejct.GL.LLSphereLineGL;
+import de.neuwirthinformatik.Alexander.gl.obejct.D3.Simulation3D;
+
 
 public class PhSim 
 {
 	public static void main(String[] args)
 	{
-		//Player3D p = new Player3D(40, 1);
-		/*Cube3D c1 = new Cube3D();
-		Cube3D c2 = new Cube3D();
-		Cube3D c3 = new Cube3D();
-		Cube3D c4 = new Cube3D();
-		c1.move(new Vektor(10,0,0));
-		c2.move(new Vektor(10,10,0));
-		c3.move(new Vektor(0,0,0));
-		c4.move(new Vektor(0,10,0));
-		GLGlobal.init(new Updateable[]{p,c1,c2,c3,c4});
-		GLGlobal.start();*/
-		
-		Simulation3D p = new Simulation3D();
-		
-		Cube3D c1 = new Cube3D();
-		c1.move(new Vektor(0,300,0));
-		c1.setScale(new Vektor(500,5,1));
-		c1.setColor(255, 0, 0);
-		
-		Cube3D c2 = new Cube3D();
-		c2.move(new Vektor(0,-300,0));
-		c2.setScale(new Vektor(500,5,1));
-		c2.setColor(0, 0, 255);
+		float d = 2;//m
+		float pm = 6.64465675e-27F;//	kg
+		float pq = 3.204e-19F;//	C
+		float B = 0.25e-7F;//T		
+		float E = 0.5e-9F;//N/C
+		float r = 0.05F;//m
+		float s = 0.1F;//m/s
+		PhSim.startSimulation(d, pm, pq, B, E, r, s);
+	}
+	
+	public static void startSimulation(float d, float pm, float pq, float B, float E, float r, float s)
+	{
 		//FL<FEL	: -0.25e-10		0.5e-12
 		//FL>FEL	: -0.25e-10		1e-12
 		//
-		Alpha a = new Alpha(new Vektor(0,0,0e-10F), new Vektor(0,0e-12F,0));
-		a.setScale(new Vektor(10,10,10));
-		a.setPosition(new Vektor(-390,0,-100));
+		Simulation3D p = new Simulation3D(d);
 		
-		a.setSpeed(new Vektor(10F,0,0));
+		Cube3D c1 = new Cube3D();
+		c1.move(new Vektor(0, (d*50),0));
+		c1.setScale(new Vektor( (d*60*100),d*100/60,1));
+		c1.setColor(211, 211, 211);
+		
+		Cube3D c2 = new Cube3D();
+		c2.move(new Vektor(0, (-d*50),0));
+		c2.setScale(new Vektor( (d*60*100),d*100/60,1));
+		c2.setColor(211, 211, 211);
+		
+		Cube3D c3 = new Cube3D();
+		c3.move(new Vektor(-(d*50), 0,-10));
+		c3.setScale(new Vektor(100,0.5F,0.5F));
+		c3.setColor(255, 140, 0);
+		
+		Cube3D c4 = new Cube3D();
+		c4.move(new Vektor(-(d*50), 0,-10));
+		c4.setScale(new Vektor(100,0.5F,0.5F));
+		c4.setColor(255, 140, 0);
+		c4.rotate(new Vektor(0,0,-90));
+		
+		Cube3D c5 = new Cube3D();
+		c5.move(new Vektor(-(d*50), 0,0));
+		c5.setScale(new Vektor(1,0.25F,0.25F));
+		c5.setColor(255, 0, 0);
+		
+		Cube3D c6 = new Cube3D();
+		c6.move(new Vektor(-(d*50), 0,0));
+		c6.setScale(new Vektor(1,0.25F,0.25F));
+		c6.setColor(255, 0, 0);
+		c6.rotate(new Vektor(0,0,-90));
+		
+		
+		TestObj a = new TestObj(new Vektor(0,0,-B), new Vektor(0,E,0),pm,pq);
+		a.setScale(new Vektor(r*100,r*100,r*100));
+		a.setPosition(new Vektor(-(d*50),0,-100));
+		
+		a.setSpeed(new Vektor(s,0,0));
 		
 		//s.move(new Vektor(-20,0,0));
 		//p.move(new Vektor(0,0,-10));
-		GLGlobal.init(new Updateable[]{p,c1,c2,a});
+		GLGlobal.init(new Updateable[]{p,c3,c4,c5,c6,a});
 		GLGlobal.start();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		a.setSpeed(new Vektor(0,0,0));
-		System.out.println(LLSphereLineGL.x.get(0));
-		System.out.println(LLSphereLineGL.x.get(LLSphereLineGL.x.size()-1));
-		
 		/**
-		 * scale
-		 *	10m/s
-		 *	1s -> 10m
-		 *	---> d15
+		 * scale 1.5p = 1m			100p ?= 1m
+		 * 1440.8154 == 1000m
+		 * 1433.9834 ==
+		 * 1432.8835 ==
+		 * 100000m   == 148796.7
+		 * ----------------
+		 * 100m = 14.192541p    1m = 0.14
+		 * 100m = 21524p		1m = 215p
+		 * 100m = 10789.028		1m = 107.89p
+		 * 		  1058.15
+		 * 1m	= 75.870926p
 		 */
 	}
 }
