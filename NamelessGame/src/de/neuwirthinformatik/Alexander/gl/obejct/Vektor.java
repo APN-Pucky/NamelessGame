@@ -13,4 +13,29 @@ public class Vektor extends Vector3f
 	{
 		super(v.x,v.y,v.z);
 	}
+	
+	public void cross(Vektor v)
+	{
+		Vektor.cross(this, v, this);
+	}
+	
+	public void add(Vektor v)
+	{
+		Vektor.add(this, v, this);
+	}
+	
+	public void sub(Vektor v)
+	{
+		Vektor.sub(this, v, this);
+	}
+	
+	public void mult(float p)
+	{
+		scale(p);
+	}
+	
+	public void div(float p)
+	{
+		scale(1/p);
+	}
 }

@@ -24,9 +24,17 @@ public abstract class Object3D extends Object implements Drawable, Updateable
 		}
 	}
 	//abstract
-	public abstract void update(long delta);
+	public abstract void update(float delta);
 	
 	//normal
+	
+	public void setScale(Vektor v)
+	{
+		data[6] = v.x;
+		data[7] = v.y;
+		data[8] = v.z;
+	}
+	
 	public void setPosition(Vektor v)
 	{
 		data[0] = v.x;
@@ -41,23 +49,28 @@ public abstract class Object3D extends Object implements Drawable, Updateable
 		data[2] += v.z;
 	}
 	
-	public void setScale(Vektor v)
-	{
-		data[6] = v.x;
-		data[7] = v.y;
-		data[8] = v.z;
-	}
-	
 	public Vektor getPosition()
 	{
 		return new Vektor(data[0],data[1],data[2]);
 	}
 	
-	public void setRotation(float x, float y, float z)
+	public void setRotation(Vektor v)
 	{
-		data[3] = x;
-		data[4] = y;
-		data[5] = z;
+		data[3] = v.x;
+		data[4] = v.y;
+		data[5] = v.z;
+	}
+	
+	public void rotate(Vektor v)
+	{
+		data[3] += v.x;
+		data[4] += v.y;
+		data[5] += v.z;
+	}
+	
+	public Vektor getRotation(float x, float y, float z)
+	{
+		return new Vektor(data[3],data[4],data[5]);
 	}
 	
 	public void setColor(float r, float g, float b)

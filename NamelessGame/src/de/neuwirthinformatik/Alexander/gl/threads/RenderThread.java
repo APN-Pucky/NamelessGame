@@ -59,7 +59,7 @@ public class RenderThread extends SyncThread
 			postRender();
 			prev = cur;
 			Display.update();
-			Display.sync(60);
+			Display.sync(120);
 		}
 		GLGlobal.clean();
 	}
@@ -69,6 +69,9 @@ public class RenderThread extends SyncThread
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+	  	//-- Init
+	  	GLGlobal.init(InitLevel.PRERENDER);
+	  	//## Init
 	}
 	
 	public void postRender()
@@ -105,5 +108,6 @@ public class RenderThread extends SyncThread
 	  	glMatrixMode(GL_MODELVIEW);
       	glLoadIdentity();
       	glEnable(GL_DEPTH_TEST);
+      	while(!Display.isCreated()){};
 	}
 }

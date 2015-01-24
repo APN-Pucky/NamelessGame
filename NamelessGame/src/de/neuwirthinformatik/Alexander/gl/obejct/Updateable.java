@@ -4,5 +4,5 @@ import de.neuwirthinformatik.Alexander.gl.GLGlobalParam;
 
 public interface Updateable extends GLGlobalParam
 {
-	public void update(long delta);
+	public void update(float delta);
 }

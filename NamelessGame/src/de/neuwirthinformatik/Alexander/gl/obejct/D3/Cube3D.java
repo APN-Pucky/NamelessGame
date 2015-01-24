@@ -14,9 +14,9 @@ public class Cube3D extends Object3D
 	}
 
 	@Override
-	public void update(long delta) 
+	public void update(float delta) 
 	{
-		
+		//this.rotate(new Vektor(1,1,0));
 	}
 
 }

@@ -2,19 +2,19 @@ package de.neuwirthinformatik.Alexander.gl.obejct.GL;
 
 import static org.lwjgl.opengl.GL11.glRotatef;
 import static org.lwjgl.opengl.GL11.glTranslatef;
-import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 
 import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.Object;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
 
-public class CameraGL extends ObjectGL
+public class SimulationGL extends ObjectGL
 {
 private static boolean init = false;
 	
-	public CameraGL(Object o)
+	public SimulationGL(Object o)
 	{
 		super(o);
 	}
@@ -36,8 +36,9 @@ private static boolean init = false;
 		{
 			init = true;
 			//code
-			gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 200F);
-			
+			//gluPerspective(30, (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight(), 0.002F, 200F);
+			float a = (float)Display.getDesktopDisplayMode().getWidth() / (float)Display.getDesktopDisplayMode().getHeight();
+			GL11.glOrtho(-300*a,300*a,-300,300,-100,100);
 		}
 	}
 	@Override

@@ -11,7 +11,7 @@ public class Sphere3D extends Object3D
 	}
 
 	@Override
-	public void update(long delta) 
+	public void update(float delta) 
 	{
 		
 	}

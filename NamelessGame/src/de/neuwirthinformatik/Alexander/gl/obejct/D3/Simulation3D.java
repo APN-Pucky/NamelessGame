@@ -4,17 +4,17 @@ import org.lwjgl.input.Keyboard;
 
 import de.neuwirthinformatik.Alexander.gl.GLGlobal;
 import de.neuwirthinformatik.Alexander.gl.obejct.Object3D;
-import de.neuwirthinformatik.Alexander.gl.obejct.GL.CameraGL;
+import de.neuwirthinformatik.Alexander.gl.obejct.GL.SimulationGL;
 
-public class Camera3D extends Object3D
+public class Simulation3D extends Object3D
 {
-	public Camera3D()
+	public Simulation3D()
 	{
-		super(CameraGL.class);
+		super(SimulationGL.class);
 	}
 
 	@Override
-	public void update(long delta) 
+	public void update(float delta) 
 	{
         if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))GLGlobal.stop();
 	}

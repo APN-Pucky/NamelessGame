@@ -26,7 +26,7 @@ public class Player3D extends Object3D
 		this.mouseSpeed = mousespeed;
 	}
 	
-	public void update(long delta)
+	public void update(float delta)
 	{
 		if (Mouse.isGrabbed()) {
             float mouseDX = (float) (Mouse.getDX() * mouseSpeed * 0.16f);

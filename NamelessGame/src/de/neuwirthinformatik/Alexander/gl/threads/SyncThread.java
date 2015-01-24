@@ -4,8 +4,8 @@ public class SyncThread extends Thread
 {
 	private long cur;
 	private long prev;
-	private int millis; 
-	private long delta;
+	private float nanos; 
+	private float delta;
 	protected boolean running = true;
 	boolean init = true;
 	
@@ -18,23 +18,24 @@ public class SyncThread extends Thread
 		else
 		{
 			calcDelta();
-			long diff = millis-delta;
+			float diff = nanos-delta;
 			if(diff>0)
 			{
 				try 
 				{
-					sleep(diff);
+					sleep(Math.round(diff));
 				} 
 				catch (InterruptedException e) 
 				{
 					e.printStackTrace();
 				}
+				delta = nanos;
 			}
 				
 		}
 	}
 	
-	public long getDelta()
+	public float getDelta()
 	{
 		return delta;
 	}
@@ -42,7 +43,7 @@ public class SyncThread extends Thread
 	public void init(float fps)
 	{
 		init = false;
-		millis = (int) Math.round(1000/fps);
+		nanos = 1000/fps;
 		prev = System.currentTimeMillis();
 	}
 	
@@ -50,7 +51,7 @@ public class SyncThread extends Thread
 	{
 		cur = System.currentTimeMillis();
 		delta = cur-prev;
-		prev = System.currentTimeMillis();
+		prev = cur;
 	}
 	
 	public void stopExec()

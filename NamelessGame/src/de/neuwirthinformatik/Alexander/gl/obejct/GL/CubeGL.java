@@ -6,6 +6,7 @@ import static org.lwjgl.opengl.GL15.*;
 import java.nio.FloatBuffer;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
 import de.neuwirthinformatik.Alexander.gl.GLUtil;
@@ -30,13 +31,16 @@ public class CubeGL extends ObjectGL implements Renderable
 	{
 		glPushMatrix();
 			applyData();
+			
 			glEnableClientState(GL_VERTEX_ARRAY);
-		    glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);
+		    glBindBuffer(GL_ARRAY_BUFFER, vertexid);
 		    glVertexPointer(3, GL_FLOAT, 0, 0);
 		    
-		    glEnableClientState(GL_COLOR_ARRAY);
-		    glBindBuffer(GL15.GL_ARRAY_BUFFER, colorid);
-		    glColorPointer(3, GL_FLOAT, 0, 0);
+		    //glEnableClientState(GL_COLOR_ARRAY);
+		    //glBindBuffer(GL_ARRAY_BUFFER, colorid);
+		    //glColorPointer(3, GL_FLOAT, 0, 0);
+		    
+		    glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
 		    
 		    glDrawArrays(GL_QUADS, 0, 24);
 		glPopMatrix();
@@ -50,35 +54,35 @@ public class CubeGL extends ObjectGL implements Renderable
 			init = true;
 			//code
 			
-			float[] fb = new float[]{	0,0,-1,	    
-										-1,0,-1,		    
+			float[] fb = new float[]{	1,1,-1,	    
+										-1,1,-1,		    
 										-1,-1,-1,		    
-										0,-1,-1,
+										1,-1,-1,
 			
-										0,0,0,	    
-										-1,0,0,		    
-										-1,-1,0,		    
-										0,-1,0,
+										1,1,1,	    
+										-1,1,1,		    
+										-1,-1,1,		    
+										1,-1,1,
     		
-										0,-1,0,		    
-										-1,-1,0,	
+										1,-1,1,		    
+										-1,-1,1,	
 										-1,-1,-1,
-										0,-1,-1,	
+										1,-1,-1,	
     		
-										0,0,0,		    
-										-1,0,0,	
-										-1,0,-1,
-										0,0,-1,
+										1,1,1,		    
+										-1,1,1,	
+										-1,1,-1,
+										1,1,-1,
     		
-										-1,0,0,		    
-										-1,-1,0,	
+										-1,1,1,		    
+										-1,-1,1,	
 										-1,-1,-1,
-										-1,0,-1,	
+										-1,1,-1,	
     		
-										0,0,0,		    
-										0,-1,0,	
-										0,-1,-1,
-										0,0,-1	};
+										1,1,1,		    
+										1,-1,1,	
+										1,-1,-1,
+										1,1,-1	};
 
 			vertexid = glGenBuffers();
 			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexid);

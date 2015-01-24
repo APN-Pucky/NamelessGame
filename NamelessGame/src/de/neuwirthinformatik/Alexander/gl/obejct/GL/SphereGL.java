@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL11.*;
-
 import de.neuwirthinformatik.Alexander.gl.GLUtil;
 import de.neuwirthinformatik.Alexander.gl.obejct.InitLevel;
 import de.neuwirthinformatik.Alexander.gl.obejct.ObjectGL;
@@ -31,6 +30,8 @@ public class SphereGL extends ObjectGL
 			glEnableClientState(GL_VERTEX_ARRAY);
 		    glBindBuffer(GL_ARRAY_BUFFER, vertexid);
 		    glVertexPointer(3, GL_FLOAT, 0, 0);
+		    
+		    glDisableClientState(GL_COLOR_ARRAY);
 		    
 		    glDrawArrays(8, 0, size/3);
 		glPopMatrix();
