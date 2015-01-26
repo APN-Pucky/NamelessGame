@@ -11,17 +11,18 @@ public class PhSim
 {
 	public static void main(String[] args)
 	{
-		float d = 2;//m
+		float d = 6;//m
 		float pm = 6.64465675e-27F;//	kg
 		float pq = 3.204e-19F;//	C
-		float B = 0.25e-7F;//T		
-		float E = 0.5e-9F;//N/C
+		float B = 1e-8F;//T		
+		float E = 5e-9F;//N/C
 		float r = 0.05F;//m
-		float s = 0.1F;//m/s
-		PhSim.startSimulation(d, pm, pq, B, E, r, s);
+		float s = 0.5F;//m/s
+		float u = 1000;
+		PhSim.startSimulation(u,d, pm, pq, B, E, r, s);
 	}
 	
-	public static void startSimulation(float d, float pm, float pq, float B, float E, float r, float s)
+	public static void startSimulation(float u,float d, float pm, float pq, float B, float E, float r, float s)
 	{
 		//FL<FEL	: -0.25e-10		0.5e-12
 		//FL>FEL	: -0.25e-10		1e-12
@@ -61,7 +62,7 @@ public class PhSim
 		c6.rotate(new Vektor(0,0,-90));
 		
 		
-		TestObj a = new TestObj(new Vektor(0,0,-B), new Vektor(0,E,0),pm,pq);
+		TestObj a = new TestObj(new Vektor(0,0,-B), new Vektor(0,E,0),pm,pq,u);
 		a.setScale(new Vektor(r*100,r*100,r*100));
 		a.setPosition(new Vektor(-(d*50),0,-100));
 		

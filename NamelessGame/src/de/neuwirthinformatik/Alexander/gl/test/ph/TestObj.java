@@ -12,13 +12,15 @@ public class TestObj extends LLSphereLine3D
 	Vektor pE;//	N/C
 	double pm;//	kg
 	double pq;//	C
+	double u;
 	
-	public TestObj(Vektor pB, Vektor pE, double pm, double pq) {
+	public TestObj(Vektor pB, Vektor pE, double pm, double pq, double u) {
 		super();
 		this.pE = pE;
 		this.pB = pB;
 		this.pm = pm;
 		this.pq = pq;
+		this.u = u;
 	}
 	
 	public void setSpeed(Vektor pSpeed) 
@@ -36,15 +38,17 @@ public class TestObj extends LLSphereLine3D
 		pForce.mult((float) (time/pm));
 		speed.add(pForce);
 		
-		float l = Math.round(speed.length()*10)/(float)10;
-		speed.div(speed.length());
-		speed.mult(l);
+		//float l = Math.round(speed.length()*10)/(float)10;
+		//speed.div(speed.length());
+		//speed.mult(l);
 		//System.out.println(speed.length() + "   |--Delta: " + time);
 	}
 	
 	public void move(double time) {
 		Vektor pSpeed = new Vektor(speed);
 		pSpeed.mult((float) time*100);//mult 100 -> 1m = 100p
+		//pSpeed.mult((float) time);
+		//pSpeed.normalise();
 		move(pSpeed);
 	}
 	public void calcForce() 
@@ -69,8 +73,8 @@ public class TestObj extends LLSphereLine3D
 		if(delta < 100)
 		{
 			calcForce();
-			calcSpeed(delta/1000);
-			move(delta/1000);
+			calcSpeed(1/u);
+			move(1/u);
 		}
 	}
 }
