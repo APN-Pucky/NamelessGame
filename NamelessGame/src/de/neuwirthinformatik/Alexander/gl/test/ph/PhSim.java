@@ -11,25 +11,28 @@ public class PhSim
 {
 	public static void main(String[] args)
 	{
-		float d = 6;//m
+		float d = 2;//m
 		float pm = 6.64465675e-27F;//	kg
 		float pq = 3.204e-19F;//	C
-		float B = 1e-8F;//T		
-		float E = 5e-9F;//N/C
-		float r = 0.05F;//m
-		float s = 0.5F;//m/s
-		float u = 1000;
-		PhSim.startSimulation(u,d, pm, pq, B, E, r, s);
+		
+		float B = 0.0e-8F;//T		
+		float E = 0.0e-8F;//N/C
+		float s = 0F;//m/s
+		
+		float r = 0.0001F;//m
+		float sec = 0F;
+		float u = 1000F;
+		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s);
 	}
 	
-	public static void startSimulation(float u,float d, float pm, float pq, float B, float E, float r, float s)
+	public static void startSimulation(float u,float sec,float d, float pm, float pq, float B, float E, float r, float s)
 	{
 		//FL<FEL	: -0.25e-10		0.5e-12
 		//FL>FEL	: -0.25e-10		1e-12
 		//
 		Simulation3D p = new Simulation3D(d);
 		
-		Cube3D c1 = new Cube3D();
+		/*Cube3D c1 = new Cube3D();
 		c1.move(new Vektor(0, (d*50),0));
 		c1.setScale(new Vektor( (d*60*100),d*100/60,1));
 		c1.setColor(211, 211, 211);
@@ -37,7 +40,7 @@ public class PhSim
 		Cube3D c2 = new Cube3D();
 		c2.move(new Vektor(0, (-d*50),0));
 		c2.setScale(new Vektor( (d*60*100),d*100/60,1));
-		c2.setColor(211, 211, 211);
+		c2.setColor(211, 211, 211);*/
 		
 		Cube3D c3 = new Cube3D();
 		c3.move(new Vektor(-(d*50), 0,-10));
@@ -67,7 +70,11 @@ public class PhSim
 		a.setPosition(new Vektor(-(d*50),0,-100));
 		
 		a.setSpeed(new Vektor(s,0,0));
-		
+		for(int i =0;i < sec*u;i++)
+		{
+			a.update(0);
+			
+		}
 		//s.move(new Vektor(-20,0,0));
 		//p.move(new Vektor(0,0,-10));
 		GLGlobal.init(new Updateable[]{p,c3,c4,c5,c6,a});

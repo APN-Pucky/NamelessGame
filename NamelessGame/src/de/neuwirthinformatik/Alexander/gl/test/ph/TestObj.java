@@ -37,10 +37,11 @@ public class TestObj extends LLSphereLine3D
 		Vektor pForce = new Vektor(force);
 		pForce.mult((float) (time/pm));
 		speed.add(pForce);
-		
-		//float l = Math.round(speed.length()*10)/(float)10;
-		//speed.div(speed.length());
-		//speed.mult(l);
+		//round div
+		/*float l = Math.round(speed.length()*u)/((float)u);
+		speed.div(speed.length());
+		speed.mult(l);
+		*/
 		//System.out.println(speed.length() + "   |--Delta: " + time);
 	}
 	
@@ -69,12 +70,13 @@ public class TestObj extends LLSphereLine3D
 	@Override
 	public void update(float delta) 
 	{
-		super.update(delta);
 		if(delta < 100)
 		{
+			super.update(delta);
 			calcForce();
 			calcSpeed(1/u);
 			move(1/u);
+			
 		}
 	}
 }

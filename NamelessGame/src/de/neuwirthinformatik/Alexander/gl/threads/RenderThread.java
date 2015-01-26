@@ -59,7 +59,7 @@ public class RenderThread extends SyncThread
 			postRender();
 			prev = cur;
 			Display.update();
-			Display.sync(60);
+			Display.sync(30);
 		}
 		GLGlobal.clean();
 	}

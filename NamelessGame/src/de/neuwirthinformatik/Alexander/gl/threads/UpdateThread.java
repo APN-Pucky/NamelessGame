@@ -39,7 +39,7 @@ public class UpdateThread extends SyncThread
 				rs.add(d.draw());
 			}
 			GLGlobal.setCurrentRenderStatus(urs);
-			sync(240);
+			sync(30);
 		}
 	}
 }
