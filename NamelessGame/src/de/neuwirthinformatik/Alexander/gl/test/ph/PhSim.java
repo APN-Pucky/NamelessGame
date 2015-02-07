@@ -11,17 +11,17 @@ public class PhSim
 {
 	public static void main(String[] args)
 	{
-		float d = 2;//m
-		float pm = 6.64465675e-27F;//	kg
-		float pq = 3.204e-19F;//	C
+		float d = 0.155F;//m
+		float pm = 9.109e-31F;//	kg
+		float pq = -1.602e-19F;//	C
 		
-		float B = 0.0e-8F;//T		
-		float E = 0.0e-8F;//N/C
-		float s = 0F;//m/s
+		float B = -1.3e-3F;//T		
+		float E = -2.56e4F;//N/C
+		float s = 4.2e7F;//m/s
 		
 		float r = 0.0001F;//m
-		float sec = 0F;
-		float u = 1000F;
+		float sec = 0.000000004F;
+		float u = 0.5e15F;
 		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s);
 	}
 	
@@ -75,8 +75,10 @@ public class PhSim
 			a.update(0);
 			
 		}
+		
 		//s.move(new Vektor(-20,0,0));
 		//p.move(new Vektor(0,0,-10));
+		
 		GLGlobal.init(new Updateable[]{p,c3,c4,c5,c6,a});
 		GLGlobal.start();
 		/**
