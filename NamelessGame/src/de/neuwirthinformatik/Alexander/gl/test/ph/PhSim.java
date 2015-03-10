@@ -15,12 +15,12 @@ public class PhSim
 		float pm = 9.109e-31F;//	kg
 		float pq = -1.602e-19F;//	C
 		
-		float B = -1.0e-2F;//T	
+		float B = -8.0e-3F;//T	
 		float E = -2.56e4F;//N/C
 		float s = 4.2e7F;//m/s
 		
 		float r = 0.0001F;//m
-		float sec = 0.000000004F;
+		float sec = 0.00000004F;
 		float u = 0.5e15F;
 		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s);
 	}
