@@ -24,7 +24,7 @@ public class Test
 		GLGlobal.init(new Updateable[]{p,c1,c2,c3,c4});
 		GLGlobal.start();*/
 		
-		Simulation3D p = new Simulation3D();
+		Simulation3D p = new Simulation3D(1.0F);
 		Sphere3D s = new Sphere3D();
 		Cube3D c1 = new Cube3D();
 		Cube3D c2 = new Cube3D();

@@ -15,7 +15,7 @@ public class PhSim
 		float pm = 9.109e-31F;//	kg
 		float pq = -1.602e-19F;//	C
 		
-		float B = -1.3e-3F;//T		
+		float B = -1.0e-2F;//T	
 		float E = -2.56e4F;//N/C
 		float s = 4.2e7F;//m/s
 		
