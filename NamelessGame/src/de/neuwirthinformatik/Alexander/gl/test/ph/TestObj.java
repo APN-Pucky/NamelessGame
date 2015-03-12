@@ -8,13 +8,20 @@ public class TestObj extends LLSphereLine3D
 {
 	Vektor speed = new Vektor(0,0,0);//	m/s
 	Vektor force = new Vektor(0,0,0);//	N
-	Vektor pB;//	T
+	Field pB;//	T
 	Vektor pE;//	N/C
 	double pm;//	kg
 	double pq;//	C
 	double u;
-	
-	public TestObj(Vektor pB, Vektor pE, double pm, double pq, double u) {
+
+	public TestObj(final Vektor pB, Vektor pE, double pm, double pq, double u) {
+		this(new Field() {
+			public Vektor getField(Vektor pos) {
+				return pB;
+			}
+		}, pE, pm, pq, u);
+	}
+	public TestObj(Field pB, Vektor pE, double pm, double pq, double u) {
 		super();
 		this.pE = pE;
 		this.pB = pB;
@@ -58,7 +65,7 @@ public class TestObj extends LLSphereLine3D
 		pEforce.mult((float)pq);
 		
 		Vektor pBforce = new Vektor(speed);
-		pBforce.cross(pB);
+		pBforce.cross(pB.getField(this.getPosition()));
 		pBforce.negate();
 		pBforce.mult((float) pq);
 		

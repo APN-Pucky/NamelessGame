@@ -20,56 +20,72 @@ public class PhSim
 		float s = 4.2e7F;//m/s
 		
 		float r = 0.0001F;//m
-		float sec = 0.00000004F;
+		float sec = 0.00000002F;
 		float u = 0.5e15F;
-		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s);
+		
+
+		boolean homogen = true;
+		
+		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s, homogen);
+		
 	}
 	
-	public static void startSimulation(float u,float sec,float d, float pm, float pq, float B, float E, float r, float s)
+	public static void startSimulation(float u,float sec,float d, float pm, float pq,final float B, float E, float r, float s, boolean homogen)
 	{
 		//FL<FEL	: -0.25e-10		0.5e-12
 		//FL>FEL	: -0.25e-10		1e-12
 		//
 		Simulation3D p = new Simulation3D(d);
 		
-		/*Cube3D c1 = new Cube3D();
-		c1.move(new Vektor(0, (d*50),0));
-		c1.setScale(new Vektor( (d*60*100),d*100/60,1));
-		c1.setColor(211, 211, 211);
+		Cube3D c1 = new Cube3D();
+		c1.move(new Vektor(0,0,0));
+		c1.setScale(new Vektor(100, 0.005F,0.005F));
+		c1.setColor(255, 140, 255);
+		c1.rotate(new Vektor(0,-90,0));
 		
-		Cube3D c2 = new Cube3D();
-		c2.move(new Vektor(0, (-d*50),0));
+		/*Cube3D c2 = new Cube3D();
+		c2.move(new Vektor(0,0,0));
 		c2.setScale(new Vektor( (d*60*100),d*100/60,1));
-		c2.setColor(211, 211, 211);*/
+		c2.setColor(255, 0, 0);*/
 		
 		Cube3D c3 = new Cube3D();
-		c3.move(new Vektor(-(d*50), 0,-10));
-		c3.setScale(new Vektor(100,0.5F,0.5F));
+		c3.move(new Vektor(0,0,0));
+		c3.setScale(new Vektor(100,0.01F,0.01F));
 		c3.setColor(255, 140, 0);
 		
 		Cube3D c4 = new Cube3D();
-		c4.move(new Vektor(-(d*50), 0,-10));
-		c4.setScale(new Vektor(100,0.5F,0.5F));
+		c4.move(new Vektor(0,0,0));
+		c4.setScale(new Vektor(100,0.01F,0.01F));
 		c4.setColor(255, 140, 0);
 		c4.rotate(new Vektor(0,0,-90));
 		
-		Cube3D c5 = new Cube3D();
-		c5.move(new Vektor(-(d*50), 0,0));
+		/*Cube3D c5 = new Cube3D();
+		c5.move(new Vektor(0,0,0));
 		c5.setScale(new Vektor(1,0.25F,0.25F));
 		c5.setColor(255, 0, 0);
 		
 		Cube3D c6 = new Cube3D();
-		c6.move(new Vektor(-(d*50), 0,0));
+		c6.move(new Vektor(0,0,0));
 		c6.setScale(new Vektor(1,0.25F,0.25F));
 		c6.setColor(255, 0, 0);
-		c6.rotate(new Vektor(0,0,-90));
+		c6.rotate(new Vektor(0,0,-90));*/
 		
+		TestObj a;
+		if(!homogen) {a = new TestObj(new Magnet(0, -0.014F, 0, 0.026F, B).generateField(), new Vektor(0,E,0),pm,pq,u);}
+		else {a = new TestObj(new Field() {
+
+			@Override
+			public Vektor getField(Vektor pos) {
+				return new Vektor(0,0,-B);
+			}
+			
+		}, new Vektor(0,E,0),pm,pq,u);}
 		
-		TestObj a = new TestObj(new Vektor(0,0,-B), new Vektor(0,E,0),pm,pq,u);
 		a.setScale(new Vektor(r*100,r*100,r*100));
-		a.setPosition(new Vektor(-(d*50),0,-100));
 		
+		a.setPosition(new Vektor(0,0,0));
 		a.setSpeed(new Vektor(s,0,0));
+		
 		for(int i =0;i < sec*u;i++)
 		{
 			a.update(0);
@@ -79,7 +95,7 @@ public class PhSim
 		//s.move(new Vektor(-20,0,0));
 		//p.move(new Vektor(0,0,-10));
 		
-		GLGlobal.init(new Updateable[]{p,c3,c4,c5,c6,a});
+		GLGlobal.init(new Updateable[]{p,c1,c3,c4,a});
 		GLGlobal.start();
 		/**
 		 * scale 1.5p = 1m			100p ?= 1m

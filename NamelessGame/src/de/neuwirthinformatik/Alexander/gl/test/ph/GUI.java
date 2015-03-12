@@ -20,6 +20,6 @@ public class GUI
 		float r = Float.parseFloat(JOptionPane.showInputDialog("Radius des Objekts (0->0.05m): "));
 		if(r ==0)r = 0.05F;
 		float s = Float.parseFloat(JOptionPane.showInputDialog("Geschwindigkeit (nach rechts, in m/s): "));
-		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s);
+		PhSim.startSimulation(u,sec,d, pm, pq, B, E, r, s, true);
 	}
 }
